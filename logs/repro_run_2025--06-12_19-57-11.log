@@ -1,0 +1,14 @@
+2025-06-12 19:57:11,777-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-12 19:57:11,777-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-12 19:57:11,778-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-12 19:57:11,782-__main__-ERROR-An error occurred during reproducibility attempt:'reproducibility_steps'
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 47, in main
+    reproducibility_report["reproducibility_steps"].append({"step":"Manuscript Parsing","status":"Success"})
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'reproducibility_steps'
+2025-06-12 19:57:11,789-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-12 19:57:11,792-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-12T19-57-11-778347.json
+2025-06-12 19:57:11,799-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-12T19-57-11-778347.md
+2025-06-12 19:57:11,800-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-12T19-57-11-778347.json
+2025-06-12 19:57:11,800-__main__-INFO-Reproducibility attempts finished.

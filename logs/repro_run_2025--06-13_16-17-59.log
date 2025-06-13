@@ -1,0 +1,19 @@
+2025-06-13 16:17:59,272-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 16:17:59,273-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 16:17:59,273-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 16:17:59,278-__main__-INFO-Step 2: Processing data...
+2025-06-13 16:17:59,280-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 16:17:59,322-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 16:17:59,330-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 16:17:59,332-__main__-INFO-Step 3: Generating code...
+2025-06-13 16:17:59,332-__main__-ERROR-An error occurred during reproducibility attempt:name 'CodeGenerator' is not defined
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 65, in main
+    code_generator=CodeGenerator(extracted_content,processed_data_paths)
+                   ^^^^^^^^^^^^^
+NameError: name 'CodeGenerator' is not defined. Did you mean: 'ReportGenerator'?
+2025-06-13 16:17:59,340-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 16:17:59,342-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T16-17-59-273115.json
+2025-06-13 16:17:59,349-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T16-17-59-273115.md
+2025-06-13 16:17:59,349-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T16-17-59-273115.json
+2025-06-13 16:17:59,349-__main__-INFO-Reproducibility attempts finished.

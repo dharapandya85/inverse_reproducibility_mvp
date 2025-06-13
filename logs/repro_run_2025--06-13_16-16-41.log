@@ -1,0 +1,15 @@
+2025-06-13 16:16:41,180-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 16:16:41,181-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 16:16:41,182-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 16:16:41,207-__main__-INFO-Step 2: Processing data...
+2025-06-13 16:16:41,207-__main__-ERROR-An error occurred during reproducibility attempt:'Namespace' object has no attribute 'datasets'
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 57, in main
+    data_processor=DataProcessor(args.datasets,config.output_dir)
+                                 ^^^^^^^^^^^^^
+AttributeError: 'Namespace' object has no attribute 'datasets'. Did you mean: 'dataset'?
+2025-06-13 16:16:41,210-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 16:16:41,214-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T16-16-41-182729.json
+2025-06-13 16:16:41,219-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T16-16-41-182729.md
+2025-06-13 16:16:41,219-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T16-16-41-182729.json
+2025-06-13 16:16:41,220-__main__-INFO-Reproducibility attempts finished.

@@ -1,0 +1,51 @@
+2025-06-13 19:28:25,775-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 19:28:25,776-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 19:28:25,776-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 19:28:25,781-__main__-INFO-Step 2: Processing data...
+2025-06-13 19:28:25,781-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 19:28:25,787-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 19:28:25,792-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 19:28:25,793-__main__-INFO-Step 3: Generating code...
+2025-06-13 19:28:25,794-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 19:28:25,794-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 19:28:25,794-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 19:28:25,794-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 19:28:25,796-__main__-INFO-Generated code saved to disk at: output\virtual_environment\reproduced_code.py
+2025-06-13 19:28:25,797-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 19:28:25,797-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 19:28:25,800-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 19:28:25,801-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 19:28:25,802-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 19:28:30,437-environment_generator.docker_manager-INFO-Docker image built successfully.
+2025-06-13 19:28:30,438-environment_generator.manager-INFO-Environment created:{env_details}
+2025-06-13 19:28:30,438-__main__-INFO-Step 5: Executing Generated code to produce results ...
+2025-06-13 19:28:30,438-environment_generator.manager-INFO-Executing code within the dockerenvironment...
+2025-06-13 19:28:30,440-environment_generator.docker_manager-INFO-Generated code saved to  output\virtual_environment\reproduced_code.py
+2025-06-13 19:28:30,441-environment_generator.docker_manager-INFO-Running Docker command:docker run --rm -v output\data\processed:/app/data/processed:ro -v output:/app/output/reproduced_results reproducibility_env python reproduced_code.py
+2025-06-13 19:28:30,931-environment_generator.docker_manager-ERROR-Docker container exited with error: docker: Error response from daemon: create output\data\processed: "output\\data\\processed" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+
+2025-06-13 19:28:30,933-environment_generator.docker_manager-ERROR-Docker stdout:
+2025-06-13 19:28:30,933-environment_generator.docker_manager-ERROR-Error running Docker container: Code execution failed in Docker: docker: Error response from daemon: create output\data\processed: "output\\data\\processed" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+ 
+2025-06-13 19:28:30,933-__main__-ERROR-An error occurred during reproducibility attempt:Code execution failed in Docker: docker: Error response from daemon: create output\data\processed: "output\\data\\processed" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+ 
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 90, in main
+    generated_results=env_manager.execute_code(generated_code,processed_data_paths,config.output_dir)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 30, in execute_code
+    generated_results=self.manager.execute_code(code,processed_data_paths,results_output_dir)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 117, in execute_code
+    raise RuntimeError(f"Code execution failed in Docker: {process.stderr} ")
+RuntimeError: Code execution failed in Docker: docker: Error response from daemon: create output\data\processed: "output\\data\\processed" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+ 
+2025-06-13 19:28:30,940-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 19:28:30,945-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T19-28-25-776523.json
+2025-06-13 19:28:30,954-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T19-28-25-776523.md
+2025-06-13 19:28:30,954-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T19-28-25-776523.json
+2025-06-13 19:28:30,955-__main__-INFO-Reproducibility attempts finished.

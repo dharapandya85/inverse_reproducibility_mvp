@@ -1,0 +1,64 @@
+2025-06-13 18:43:58,082-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 18:43:58,086-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 18:43:58,090-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 18:43:58,099-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 18:43:58,101-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 18:43:58,105-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 18:43:58,109-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 18:44:02,994-environment_generator.docker_manager-ERROR-Failed to build Docker image.
+2025-06-13 18:44:02,995-environment_generator.docker_manager-ERROR-Command: dockerbuild-treproducibility_env-foutput\virtual_environment\Dockerfileoutput\virtual_environment 
+2025-06-13 18:44:02,996-environment_generator.docker_manager-ERROR-Docker STDOUT:
+
+2025-06-13 18:44:02,996-environment_generator.docker_manager-ERROR-Docker STDERR:
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 498B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.9-slim-buster
+#2 DONE 3.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 111B 0.0s done
+#4 DONE 0.0s
+
+#5 [5/7] RUN mkdir -p /app/output/reproduced_results/figures
+#5 CACHED
+
+#6 [6/7] RUN mkdir -p /app/output/reproduced_results/tables
+#6 CACHED
+
+#7 [3/7] COPY requirements.txt .
+#7 CACHED
+
+#8 [4/7] RUN pip install --no-cache-dir -r requirements.txt
+#8 CACHED
+
+#9 [2/7] WORKDIR /app
+#9 CACHED
+
+#10 [7/7] COPY reproduced_code.py /app/reproduced_code.py
+#10 ERROR: failed to calculate checksum of ref c8e2cc4e-1fdb-470c-813c-e3a28f04b282::exsvcwg5xnhwraly8ipjsvgj8: "/reproduced_code.py": not found
+
+#11 [1/7] FROM docker.io/library/python:3.9-slim-buster@sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d76dc5c0f01cac9b53990
+#11 resolve docker.io/library/python:3.9-slim-buster@sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d76dc5c0f01cac9b53990 0.0s done
+#11 sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d76dc5c0f01cac9b53990 988B / 988B done
+#11 CANCELED
+------
+ > [7/7] COPY reproduced_code.py /app/reproduced_code.py:
+------
+Dockerfile:15
+--------------------
+  13 |     
+  14 |     # Copy the generated code script
+  15 | >>> COPY reproduced_code.py /app/reproduced_code.py
+  16 |     
+  17 |     CMD ["python", "reproduced_code.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref c8e2cc4e-1fdb-470c-813c-e3a28f04b282::exsvcwg5xnhwraly8ipjsvgj8: "/reproduced_code.py": not found
+

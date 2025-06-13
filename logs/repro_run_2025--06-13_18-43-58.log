@@ -1,0 +1,28 @@
+2025-06-13 18:43:58,076-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 18:43:58,076-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 18:43:58,077-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 18:43:58,081-__main__-INFO-Step 2: Processing data...
+2025-06-13 18:43:58,090-__main__-INFO-Step 3: Generating code...
+2025-06-13 18:43:58,091-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 18:43:58,091-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 18:43:58,099-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 18:43:58,099-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 18:43:58,099-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 18:44:02,996-__main__-ERROR-An error occurred during reproducibility attempt:Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile', 'output\\virtual_environment']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 75, in main
+    env_details=env_manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 25, in create_environment
+    env_details=self.manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 19, in create_environment
+    subprocess.run(
+  File "C:\Users\dhara\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile', 'output\\virtual_environment']' returned non-zero exit status 1.
+2025-06-13 18:44:03,001-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 18:44:03,005-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T18-43-58-077724.json
+2025-06-13 18:44:03,012-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T18-43-58-077724.md
+2025-06-13 18:44:03,012-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T18-43-58-077724.json
+2025-06-13 18:44:03,013-__main__-INFO-Reproducibility attempts finished.

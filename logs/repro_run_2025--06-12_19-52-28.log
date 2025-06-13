@@ -1,0 +1,2 @@
+2025-06-12 19:52:31,200-manuscript_parser.parser-INFO-Extracting content from text file: data/raw/example_manuscript.txt
+2025-06-12 19:52:31,230-manuscript_parser.text_extractor-ERROR-Error extracting text from text file data/raw/example_manuscript.txt:'str' object has no attribute 'read'

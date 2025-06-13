@@ -1,0 +1,81 @@
+{
+    "timestamp": "2025-06-13T16:20:09.129924",
+    "manuscript_path": "data/raw/example_manuscript.txt",
+    "dataset_path": [
+        "data/raw/dataset1.csv"
+    ],
+    "reproduction_steps": [
+        {
+            "step": "Manuscript Parsing",
+            "status": "Success"
+        },
+        {
+            "step": "Data Processing",
+            "status": "Success",
+            "details": {
+                "processed_files": [
+                    "output\\data\\processed\\dataset1_processed.csv"
+                ]
+            }
+        },
+        {
+            "step": "Overall",
+            "status": "Failed",
+            "error": "'RuleBasedCodeGenerator' object has no attribute '_generate_data_loading_code'"
+        }
+    ],
+    "overall_confidence_score": 0.0,
+    "identified_failure_points": [],
+    "software_versions_identified": {
+        "python": [
+            "3.9"
+        ],
+        "scikit-learn": [
+            "1.0.2"
+        ]
+    },
+    "reproduced_code": " ",
+    "virtual_environment_details": {},
+    "extracted_manuscript_content": {
+        "methodology_sections": [
+            "Methodology\n\n### 2.1 Dataset\n\nA synthetic classification dataset was generated using `scikit-learn`'s `make_classification` function. The dataset consists of 1000 samples, 20 features (10 informative, 5 redundant, 5 noisy), and 2 classes. A fixed random state of 42 was used for reproducibility.\n\n### 2.2 Feature Scaling Techniques\n\nThree approaches were compared:\n1.  **No Scaling:** Features were used as generated.\n2.  **Standard Scaling:** Features were scaled to have zero mean and unit variance using `sklearn.preprocessing.StandardScaler`.\n3.  **Min-Max Scaling:** Features were scaled to a fixed range, typically 0 to 1, using `sklearn.preprocessing.MinMaxScaler`.\n\n### 2.3 Model Training and Evaluation\n\nA **Logistic Regression model** from `sklearn.linear_model` was used. The dataset was split into training and testing sets with a **ratio of 80:20** using `sklearn.model_selection.train_test_split` with `random_state=42`. The model was trained on the preprocessed training data and evalu",
+            "methods and distance-based algorithms.\n\n## 2. Methodology\n\n### 2.1 Dataset\n\nA synthetic classification dataset was generated using `scikit-learn`'s `make_classification` function. The dataset consists of 1000 samples, 20 features (10 informative, 5 redundant, 5 noisy), and 2 classes. A fixed random state of 42 was used for reproducibility.\n\n### 2.2 Feature Scaling Techniques\n\nThree approaches were compared:\n1.  **No Scaling:** Features were used as generated.\n2.  **Standard Scaling:** Features were scaled to have zero mean and unit variance using `sklearn.preprocessing.StandardScaler`.\n3.  **Min-Max Scaling:** Features were scaled to a fixed range, typically 0 to 1, using `sklearn.preprocessing.MinMaxScaler`.\n\n### 2.3 Model Training and Evaluation\n\nA **Logistic Regression model** from `sklearn.linear_model` was used. The dataset was split into training and testing sets with a **ratio of 80:20** using `sklearn.model_selection.train_test_split` with `random_state=42`. The model was train",
+            "approaches were compared:\n1.  **No Scaling:** Features were used as generated.\n2.  **Standard Scaling:** Features were scaled to have zero mean and unit variance using `sklearn.preprocessing.StandardScaler`.\n3.  **Min-Max Scaling:** Features were scaled to a fixed range, typically 0 to 1, using `sklearn.preprocessing.MinMaxScaler`.\n\n### 2.3 Model Training and Evaluation\n\nA **Logistic Regression model** from `sklearn.linear_model` was used. The dataset was split into training and testing sets with a **ratio of 80:20** using `sklearn.model_selection.train_test_split` with `random_state=42`. The model was trained on the preprocessed training data and evaluated on the corresponding test data.\n\nModel performance was assessed using **accuracy score** and **F1-score**, both from `sklearn.metrics`. All experiments were conducted using **Python 3.9** and `scikit-learn 1.0.2`.\n\n## 3. Results\n\n### 3.1 Performance Comparison\n\nTable 1 summarizes the performance metrics for each scaling technique.\n\n"
+        ],
+        "results_sections": [
+            "results demonstrate that feature scaling significantly improves model accuracy and convergence speed, with **Standard Scaling (accuracy: 0.92, F1-score: 0.91)** showing slightly better performance than **Min-Max Scaling (accuracy: 0.90, F1-score: 0.89)** for this particular dataset. Unscaled data yielded a significantly lower accuracy of 0.75. This highlights the crucial role of data preprocessing in machine learning pipelines.\n\n## 1. Introduction\n\nData preprocessing is a critical step in machine learning, often influencing model performance more than the choice of the model itself. Feature scaling, a common preprocessing technique, transforms numerical features to a standard range or distribution. This can prevent features with larger absolute values from dominating the learning process, especially for algorithms sensitive to feature magnitudes, such as gradient descent-based methods and distance-based algorithms.\n\n## 2. Methodology\n\n### 2.1 Dataset\n\nA synthetic classification dataset"
+        ],
+        "figures_and_tables_metadata": [
+            {
+                "type": "figure",
+                "number": "1"
+            },
+            {
+                "type": "figure",
+                "number": "1"
+            },
+            {
+                "type": "table",
+                "number": "1"
+            },
+            {
+                "type": "table",
+                "number": "1"
+            },
+            {
+                "type": "table",
+                "number": "1"
+            }
+        ],
+        "dependencies_mentioned": {
+            "python": [
+                "3.9"
+            ],
+            "scikit-learn": [
+                "1.0.2"
+            ]
+        }
+    },
+    "status": "Failed",
+    "error_message": "'RuleBasedCodeGenerator' object has no attribute '_generate_data_loading_code'"
+}

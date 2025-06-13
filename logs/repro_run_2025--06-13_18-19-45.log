@@ -1,0 +1,97 @@
+2025-06-13 18:19:45,599-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 18:19:45,601-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 18:19:45,601-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 18:19:45,605-__main__-INFO-Step 2: Processing data...
+2025-06-13 18:19:45,605-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 18:19:45,609-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 18:19:45,614-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 18:19:45,621-__main__-INFO-Step 3: Generating code...
+2025-06-13 18:19:45,621-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 18:19:45,622-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 18:19:45,622-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 18:19:45,622-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 18:19:45,623-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 18:19:45,623-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 18:19:45,625-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 18:19:45,626-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 18:19:45,627-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 18:19:53,904-environment_generator.docker_manager-ERROR-Failed to build Docker image: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 780B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.9-slim-buster
+#2 DONE 6.6s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 111B 0.0s done
+#4 DONE 0.0s
+
+#5 [2/9] WORKDIR /app
+#5 CACHED
+
+#6 [5/9] RUN mkdir -p /app/data/processed
+#6 CACHED
+
+#7 [6/9] RUN mkdir -p /app/output/reproduced_results/figures
+#7 CACHED
+
+#8 [7/9] RUN mkdir -p /app/output/reproduced_results/tables
+#8 CACHED
+
+#9 [3/9] COPY requirements.txt .
+#9 CACHED
+
+#10 [4/9] RUN pip install --no-cache-dir -r requirements.txt
+#10 CACHED
+
+#11 [9/9] COPY output/reproduced_code.py /app/reproduced_code.py
+#11 ERROR: failed to calculate checksum of ref c8e2cc4e-1fdb-470c-813c-e3a28f04b282::pnupcyn0x92et02642fx57fb7: "/output/reproduced_code.py": not found
+
+#12 [8/9] COPY output/data/processed/ /app/data/processed/
+#12 ERROR: failed to calculate checksum of ref c8e2cc4e-1fdb-470c-813c-e3a28f04b282::pnupcyn0x92et02642fx57fb7: "/output/data/processed": not found
+
+#13 [1/9] FROM docker.io/library/python:3.9-slim-buster@sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d76dc5c0f01cac9b53990
+#13 resolve docker.io/library/python:3.9-slim-buster@sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d76dc5c0f01cac9b53990 0.0s done
+#13 sha256:d5cca64dca485c37ccf06721e36a93bf4331b0404bfd3ef2c7873867965359b7 1.37kB / 1.37kB done
+#13 sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d76dc5c0f01cac9b53990 988B / 988B done
+#13 CANCELED
+------
+ > [8/9] COPY output/data/processed/ /app/data/processed/:
+------
+------
+ > [9/9] COPY output/reproduced_code.py /app/reproduced_code.py:
+------
+Dockerfile:20
+--------------------
+  18 |     
+  19 |     # Copy the generated code script
+  20 | >>> COPY output/reproduced_code.py /app/reproduced_code.py
+  21 |     
+  22 |     CMD ["python", "reproduced_code.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref c8e2cc4e-1fdb-470c-813c-e3a28f04b282::pnupcyn0x92et02642fx57fb7: "/output/reproduced_code.py": not found
+ 
+2025-06-13 18:19:53,905-__main__-ERROR-An error occurred during reproducibility attempt:Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile', 'output\\virtual_environment']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 75, in main
+    env_details=env_manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 25, in create_environment
+    env_details=self.manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 19, in create_environment
+    subprocess.run(
+  File "C:\Users\dhara\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile', 'output\\virtual_environment']' returned non-zero exit status 1.
+2025-06-13 18:19:53,911-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 18:19:53,914-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T18-19-45-601035.json
+2025-06-13 18:19:53,919-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T18-19-45-601035.md
+2025-06-13 18:19:53,919-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T18-19-45-601035.json
+2025-06-13 18:19:53,919-__main__-INFO-Reproducibility attempts finished.

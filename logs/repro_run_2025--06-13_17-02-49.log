@@ -1,0 +1,42 @@
+2025-06-13 17:02:49,805-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 17:02:49,806-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 17:02:49,807-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 17:02:49,813-__main__-INFO-Step 2: Processing data...
+2025-06-13 17:02:49,815-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 17:02:49,831-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 17:02:49,844-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 17:02:49,845-__main__-INFO-Step 3: Generating code...
+2025-06-13 17:02:49,846-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 17:02:49,846-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 17:02:49,847-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 17:02:49,848-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 17:02:49,848-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 17:02:49,848-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 17:02:49,850-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 17:02:49,851-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 17:02:49,853-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 17:02:50,294-environment_generator.docker_manager-ERROR-Failed to build Docker image: ERROR: "docker buildx build" requires exactly 1 argument.
+See 'docker buildx build --help'.
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Start a build
+ 
+2025-06-13 17:02:50,294-__main__-ERROR-An error occurred during reproducibility attempt:Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 75, in main
+    env_details=env_manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 25, in create_environment
+    env_details=self.manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 18, in create_environment
+    subprocess.run(
+  File "C:\Users\dhara\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile']' returned non-zero exit status 1.
+2025-06-13 17:02:50,300-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 17:02:50,305-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T17-02-49-806564.json
+2025-06-13 17:02:50,313-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T17-02-49-806564.md
+2025-06-13 17:02:50,313-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T17-02-49-806564.json
+2025-06-13 17:02:50,313-__main__-INFO-Reproducibility attempts finished.

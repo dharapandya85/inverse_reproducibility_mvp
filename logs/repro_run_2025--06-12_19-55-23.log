@@ -1,0 +1,22 @@
+2025-06-12 19:55:23,244-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-12 19:55:23,245-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-12 19:55:23,245-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-12 19:55:23,248-__main__-ERROR-An error occurred during reproducibility attempt:name 're' is not defined
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 46, in main
+    extracted_content=manuscript_parser.parse()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\manuscript_parser\parser.py", line 32, in parse
+    self._extract_key_information()
+  File "C:\Users\dhara\inverse-repro-mvp\manuscript_parser\parser.py", line 83, in _extract_key_information
+    self.extracted_content["dependencies_mentioned"] = self._extract_dependencies(raw_text)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\manuscript_parser\parser.py", line 129, in _extract_dependencies
+    python_versions = re.findall(r"Python\s*(\d(?:\.\d+){1,2})", text, re.IGNORECASE)
+                      ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2025-06-12 19:55:23,253-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-12 19:55:23,254-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-12T19-55-23-245700.json
+2025-06-12 19:55:23,261-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-12T19-55-23-245700.md
+2025-06-12 19:55:23,262-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-12T19-55-23-245700.json
+2025-06-12 19:55:23,262-__main__-INFO-Reproducibility attempts finished.

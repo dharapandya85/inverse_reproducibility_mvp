@@ -1,0 +1,60 @@
+2025-06-13 18:59:38,190-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 18:59:38,191-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 18:59:38,191-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 18:59:38,196-__main__-INFO-Step 2: Processing data...
+2025-06-13 18:59:38,196-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 18:59:38,202-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 18:59:38,207-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 18:59:38,215-__main__-INFO-Step 3: Generating code...
+2025-06-13 18:59:38,215-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 18:59:38,215-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 18:59:38,217-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 18:59:38,217-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 18:59:38,219-__main__-INFO-Generated code saved to disk at: output\virtual_environment\reproduced_code.py
+2025-06-13 18:59:38,220-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 18:59:38,220-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 18:59:38,221-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 18:59:38,222-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 18:59:38,223-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 18:59:52,165-environment_generator.docker_manager-ERROR-Failed to build Docker image.
+2025-06-13 18:59:52,166-environment_generator.docker_manager-ERROR-Command: dockerbuild-treproducibility_env-foutput\virtual_environment\Dockerfileoutput\virtual_environment 
+2025-06-13 18:59:52,166-environment_generator.docker_manager-ERROR-Docker STDOUT:
+
+2025-06-13 18:59:52,167-environment_generator.docker_manager-ERROR-Docker STDERR:
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 498B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.9-slim-buster
+#2 ERROR: failed to do request: Head "https://registry-1.docker.io/v2/library/python/manifests/3.9-slim-buster": dialing registry-1.docker.io:443 container via direct connection because static system has no HTTPS proxy: connecting to registry-1.docker.io:443: dial tcp: lookup registry-1.docker.io: no such host
+------
+ > [internal] load metadata for docker.io/library/python:3.9-slim-buster:
+------
+Dockerfile:1
+--------------------
+   1 | >>> FROM python:3.9-slim-buster
+   2 |     
+   3 |     WORKDIR /app
+--------------------
+ERROR: failed to solve: python:3.9-slim-buster: failed to resolve source metadata for docker.io/library/python:3.9-slim-buster: failed to do request: Head "https://registry-1.docker.io/v2/library/python/manifests/3.9-slim-buster": dialing registry-1.docker.io:443 container via direct connection because static system has no HTTPS proxy: connecting to registry-1.docker.io:443: dial tcp: lookup registry-1.docker.io: no such host
+
+2025-06-13 18:59:52,167-__main__-ERROR-An error occurred during reproducibility attempt:Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile', 'output\\virtual_environment']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 84, in main
+    env_details=env_manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 25, in create_environment
+    env_details=self.manager.create_environment()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 19, in create_environment
+    subprocess.run(
+  File "C:\Users\dhara\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'build', '-t', 'reproducibility_env', '-f', 'output\\virtual_environment\\Dockerfile', 'output\\virtual_environment']' returned non-zero exit status 1.
+2025-06-13 18:59:52,177-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 18:59:52,181-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T18-59-38-191049.json
+2025-06-13 18:59:52,188-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T18-59-38-191049.md
+2025-06-13 18:59:52,188-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T18-59-38-191049.json
+2025-06-13 18:59:52,189-__main__-INFO-Reproducibility attempts finished.

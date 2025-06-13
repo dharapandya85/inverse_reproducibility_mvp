@@ -1,0 +1,99 @@
+2025-06-13 19:34:08,153-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 19:34:08,154-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 19:34:08,154-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 19:34:08,157-__main__-INFO-Step 2: Processing data...
+2025-06-13 19:34:08,158-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 19:34:08,164-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 19:34:08,172-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 19:34:08,174-__main__-INFO-Step 3: Generating code...
+2025-06-13 19:34:08,174-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 19:34:08,175-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 19:34:08,175-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 19:34:08,175-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 19:34:08,178-__main__-INFO-Generated code saved to disk at: output\virtual_environment\reproduced_code.py
+2025-06-13 19:34:08,179-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 19:34:08,179-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 19:34:08,187-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 19:34:08,189-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 19:34:08,189-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 19:34:15,169-environment_generator.docker_manager-INFO-Docker image built successfully.
+2025-06-13 19:34:15,169-environment_generator.manager-INFO-Environment created:{env_details}
+2025-06-13 19:34:15,169-__main__-INFO-Step 5: Executing Generated code to produce results ...
+2025-06-13 19:34:15,170-environment_generator.manager-INFO-Executing code within the dockerenvironment...
+2025-06-13 19:34:15,172-environment_generator.docker_manager-INFO-Generated code saved to  output\virtual_environment\reproduced_code.py
+2025-06-13 19:34:15,172-environment_generator.docker_manager-INFO-Running Docker command:docker run --rm -v C:\Users\dhara\inverse-repro-mvp\output\data\processed:/app/data/processed:ro -v C:\Users\dhara\inverse-repro-mvp\output:/app/output/reproduced_results reproducibility_env python reproduced_code.py
+2025-06-13 19:34:19,527-environment_generator.docker_manager-ERROR-Docker container exited with error: Traceback (most recent call last):
+  File "/app/reproduced_code.py", line 4, in <module>
+    df_1=pd.read_csv('output\data\processed\dataset1_processed.csv')
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'output\\data\\processed\\dataset1_processed.csv'
+
+2025-06-13 19:34:19,527-environment_generator.docker_manager-ERROR-Docker stdout:
+2025-06-13 19:34:19,528-environment_generator.docker_manager-ERROR-Error running Docker container: Code execution failed in Docker: Traceback (most recent call last):
+  File "/app/reproduced_code.py", line 4, in <module>
+    df_1=pd.read_csv('output\data\processed\dataset1_processed.csv')
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'output\\data\\processed\\dataset1_processed.csv'
+ 
+2025-06-13 19:34:19,528-__main__-ERROR-An error occurred during reproducibility attempt:Code execution failed in Docker: Traceback (most recent call last):
+  File "/app/reproduced_code.py", line 4, in <module>
+    df_1=pd.read_csv('output\data\processed\dataset1_processed.csv')
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'output\\data\\processed\\dataset1_processed.csv'
+ 
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 90, in main
+    generated_results=env_manager.execute_code(generated_code,processed_data_paths,config.output_dir)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 30, in execute_code
+    generated_results=self.manager.execute_code(code,processed_data_paths,results_output_dir)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 119, in execute_code
+    raise RuntimeError(f"Code execution failed in Docker: {process.stderr} ")
+RuntimeError: Code execution failed in Docker: Traceback (most recent call last):
+  File "/app/reproduced_code.py", line 4, in <module>
+    df_1=pd.read_csv('output\data\processed\dataset1_processed.csv')
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'output\\data\\processed\\dataset1_processed.csv'
+ 
+2025-06-13 19:34:19,531-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 19:34:19,535-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T19-34-08-154299.json
+2025-06-13 19:34:19,542-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T19-34-08-154299.md
+2025-06-13 19:34:19,542-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T19-34-08-154299.json
+2025-06-13 19:34:19,543-__main__-INFO-Reproducibility attempts finished.

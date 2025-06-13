@@ -1,0 +1,40 @@
+2025-06-13 19:21:35,686-__main__-INFO-Starting reproducibility attempt for manuscript:data/raw/example_manuscript.txt
+2025-06-13 19:21:35,687-__main__-INFO-Using datasets:data/raw/dataset1.csv
+2025-06-13 19:21:35,687-__main__-INFO-Step 1: Parsing mauscript...
+2025-06-13 19:21:35,692-__main__-INFO-Step 2: Processing data...
+2025-06-13 19:21:35,692-data_processor.processor-INFO-Loading dataset: data/raw/dataset1.csv
+2025-06-13 19:21:35,696-data_processor.processor-INFO-Applying processing instructions for dataset1...
+2025-06-13 19:21:35,702-data_processor.processor-INFO-Processed data saved to: output\data\processed\dataset1_processed.csv
+2025-06-13 19:21:35,709-__main__-INFO-Step 3: Generating code...
+2025-06-13 19:21:35,709-code_generator.generator-INFO-Attempting rule-based code generation...
+2025-06-13 19:21:35,710-code_generator.rule_based_generator-INFO-Generated data loading code.
+2025-06-13 19:21:35,711-code_generator.rule_based_generator-INFO-Generated analysis code.
+2025-06-13 19:21:35,712-code_generator.rule_based_generator-INFO-Generated plotting code.
+2025-06-13 19:21:35,719-__main__-INFO-Generated code saved to disk at: output\virtual_environment\reproduced_code.py
+2025-06-13 19:21:35,722-__main__-INFO-Step 4: Recreating environment...
+2025-06-13 19:21:35,725-environment_generator.manager-INFO-Creating docker environment... 
+2025-06-13 19:21:35,727-environment_generator.docker_manager-INFO-Dockerfile generated at: output\virtual_environment\Dockerfile
+2025-06-13 19:21:35,729-environment_generator.docker_manager-INFO-requirements.txt generated for Docker at: output\virtual_environment\requirements.txt
+2025-06-13 19:21:35,730-environment_generator.docker_manager-INFO-Building Docker image:reproducibility_env...
+2025-06-13 19:23:33,141-environment_generator.docker_manager-INFO-Docker image built successfully.
+2025-06-13 19:23:33,141-environment_generator.manager-INFO-Environment created:{env_details}
+2025-06-13 19:23:33,141-__main__-INFO-Step 5: Executing Generated code to produce results ...
+2025-06-13 19:23:33,141-environment_generator.manager-INFO-Executing code within the dockerenvironment...
+2025-06-13 19:23:33,143-environment_generator.docker_manager-INFO-Generated code saved to  output\virtual_environment\reproduced_code.py
+2025-06-13 19:23:33,143-__main__-ERROR-An error occurred during reproducibility attempt:_path_exists: path should be string, bytes, os.PathLike or integer, not list
+Traceback (most recent call last):
+  File "C:\Users\dhara\inverse-repro-mvp\main.py", line 90, in main
+    generated_results=env_manager.execute_code(generated_code,processed_data_paths,config.output_dir)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\manager.py", line 30, in execute_code
+    generated_results=self.manager.execute_code(code,processed_data_paths,results_output_dir)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhara\inverse-repro-mvp\environment_generator\docker_manager.py", line 92, in execute_code
+    if not os.path.exists(processed_data_source_path):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _path_exists: path should be string, bytes, os.PathLike or integer, not list
+2025-06-13 19:23:33,148-__main__-INFO-Step 7: Generating reproducibility reports...
+2025-06-13 19:23:33,150-report_generator.generator-INFO-JSON report saved to:output\reports\reproducibility_report_2025-06-13T19-21-35-687192.json
+2025-06-13 19:23:33,155-report_generator.generator-INFO-Markdown report saved to:output\reports\reproducibility_report_2025-06-13T19-21-35-687192.md
+2025-06-13 19:23:33,155-__main__-INFO-Reproducibility report generated:output\reports\reproducibility_report_2025-06-13T19-21-35-687192.json
+2025-06-13 19:23:33,155-__main__-INFO-Reproducibility attempts finished.

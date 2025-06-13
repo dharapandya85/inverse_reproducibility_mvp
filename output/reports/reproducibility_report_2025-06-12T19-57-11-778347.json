@@ -1,0 +1,21 @@
+{
+    "timestamp": "2025-06-12T19:57:11.778347",
+    "manuscript_path": "data/raw/example_manuscript.txt",
+    "dataset_path": [
+        "data/raw/dataset1.csv"
+    ],
+    "reproduction_steps": [
+        {
+            "step": "Overall",
+            "status": "Failed",
+            "error": "'reproducibility_steps'"
+        }
+    ],
+    "overall_confidence_score": 0.0,
+    "identified_failure_points": [],
+    "software_versions_identified": {},
+    "reproduced_code": " ",
+    "virtual_environment_details": {},
+    "status": "Failed",
+    "error_message": "'reproducibility_steps'"
+}
