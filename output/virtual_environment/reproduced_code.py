@@ -1,10 +1,12 @@
 import pandas as pd 
 
-# Load processed data from output\data\processed\dataset1_processed.csv
-df_1=pd.read_csv('output\data\processed\dataset1_processed.csv')
+# Load processed data from /app/data/processed/dataset1_processed.csv
+df_1=pd.read_csv('/app/data/processed/dataset1_processed.csv')
 
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+os.makedirs('output/reproduced_results/figures', exist_ok=True)
 # Placeholder for Figure 1 plotting code
 try:
     # Based on inferred figure type/description:

@@ -86,8 +86,9 @@ CMD ["python", "{dockerfile_script_name}"]
              
     def execute_code(self,code,processed_data_paths,results_output_dir):
         # script_file_path=os.path.join(self.output_dir,"reproduced_code.py")
+        normalized_code=code.replace("\\","/")
         with open(self.script_path,"w") as f:
-            f.write(code)
+            f.write(normalized_code)
         logger.info(f"Generated code saved to  {self.script_path}")
         if not os.path.exists(self.processed_data_source_path):
             logger.warning(f"Processed data directory not found: {self.processed_data_source_path}. This might cause issues during execution.")
@@ -116,7 +117,8 @@ CMD ["python", "{dockerfile_script_name}"]
             if process.returncode !=0:
                 logger.error(f"Docker container exited with error: {process.stderr}")
                 logger.error(f"Docker stdout:{process.stdout}")
-                raise RuntimeError(f"Code execution failed in Docker: {process.stderr} ")
+                error_message=process.stderr.decode() if hasattr(process.stderr,"decode") else process.stderr
+                raise RuntimeError(f"Code execution failed in Docker: {error_message} ")
             else:
                 logger.info(f"Docker container output:\n{process.stdout}")
                 if process.stderr:
@@ -124,14 +126,14 @@ CMD ["python", "{dockerfile_script_name}"]
             host_figures_dir=os.path.join(results_output_dir,"figures")
             host_tables_dir=os.path.join(results_output_dir,"tables")
             generated_figure_paths=[]
-            if os.path.exits(host_figures_dir):
+            if os.path.exists(host_figures_dir):
                 generated_figure_paths=[
                     os.path.join(host_figures_dir,f)
                     for f in os.listdir(host_figures_dir)
                     if f.endswith((".png", ".jpg", ".jpeg", ".pdf"))
                 ]
             generated_table_paths=[]
-            if os.path.exits(host_tables_dir):
+            if os.path.exists(host_tables_dir):
                 generated_table_paths=[
                     os.path.join(host_tables_dir,f)
                     for f in os.listdir(host_tables_dir)

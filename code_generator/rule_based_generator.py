@@ -1,4 +1,5 @@
 from utils.logger import setup_logger
+import os
 logger=setup_logger(__name__)
 class RuleBasedCodeGenerator:
     def __init__(self,extracted_manuscript_content,processed_data_paths):
@@ -18,8 +19,9 @@ class RuleBasedCodeGenerator:
         for i,data_path in enumerate(self.processed_data_paths):
             data_id=f"df_{i+1}"
             self.identified_data_variables[data_path]=data_id
-            self.code_snippets.append(f"# Load processed data from {data_path}")
-            self.code_snippets.append(f"{data_id}=pd.read_csv('{data_path}')")
+            docker_data_path=f"/app/data/processed/{os.path.basename(data_path)}"
+            self.code_snippets.append(f"# Load processed data from {docker_data_path}")
+            self.code_snippets.append(f"{data_id}=pd.read_csv('{docker_data_path}')")
             self.code_snippets.append("")
         logger.info("Generated data loading code.")
     def _generate_analysis_code(self):
@@ -77,11 +79,13 @@ class RuleBasedCodeGenerator:
         self.code_snippets.append("import seaborn as sns")
         self.dependencies["matplotlib"] = ">=3.0.0"
         self.dependencies["seaborn"] = ">=0.11.0"
-
+        self.code_snippets.append("import os")  # Add this only once at the top if not already present
+        self.code_snippets.append("os.makedirs('output/reproduced_results/figures', exist_ok=True)")
         for fig in figure_metadata:
             fig_type = fig.get("type")
             fig_num = fig.get("number")
             
+
             # This is highly rudimentary. Requires NLP to understand figure *content*.
             self.code_snippets.append(f"# Placeholder for Figure {fig_num} plotting code")
             self.code_snippets.append(f"try:")

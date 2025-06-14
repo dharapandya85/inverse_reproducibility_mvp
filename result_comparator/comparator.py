@@ -18,14 +18,14 @@ class ResultComparator:
         self._compare_figures()
         self._compare_tables()
         self._calculate_overall_confidence()
-        return self.comaparison_results,self.confidence_score,self.failure_points
+        return self.comparison_results,self.confidence_score,self.failure_points
     def _compare_numerical_results(self):
         logger.info("Comparing numerical results...")
         reported_numerical=self.reported_results.get("p_values",[])+self.reported_results.get('R_squared',[])
         generated_numerical=[]
         summary_path=os.path.join(self.config.output_dir,"reproduced_results","results_summary.txt")
         if os.path.exists(summary_path):
-            with open(summary_path):
+            with open(summary_path,"r")as f:
                 content=f.read()
                 import re
                 numbers=re.findall(r"[-+]?\d*\.d+|\d+",content)
@@ -49,7 +49,7 @@ class ResultComparator:
             self.comparison_results["numerical"]=f"Accuracy:{accuracy:.2f}"
             self.confidence_score+=accuracy*0.3
         else:
-            self.comparision_results["numerical"]="No reported numerical results found in manuscript for comaparison."
+            self.comparison_results["numerical"]="No reported numerical results found in manuscript for comaparison."
         logger.info(f"Numerical comparison results:{self.comparison_results['numerical']}")
     def _compare_figures(self):
         logger.info('Comparing figures...')

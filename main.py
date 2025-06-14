@@ -42,7 +42,7 @@ def main():
     }
     try:
         # 1. Manuscript Parsing
-        logger.info("Step 1: Parsing mauscript...")
+        logger.info("Step 1: Parsing manuscript...")
         manuscript_parser=ManuscriptParser(args.manuscript)
         extracted_content=manuscript_parser.parse()
         reproducibility_report["reproduction_steps"].append({"step":"Manuscript Parsing","status":"Success"})
@@ -93,7 +93,7 @@ def main():
         #6.Code Generation
         logger.info("Step 6: Comparing Generated Results with manuscript results...")
         result_comparator=ResultComparator(generated_results,extracted_content.get("reported_results",{}))
-        comparison_results,confidence_score,failure_points=comparison_results
+        comparison_results,confidence_score,failure_points=result_comparator.compare_results()
         reproducibility_report["comparison_results"]=comparison_results
         reproducibility_report["overall_confidence_score"]=confidence_score
         reproducibility_report["identified_failure_points"].extend(failure_points)
